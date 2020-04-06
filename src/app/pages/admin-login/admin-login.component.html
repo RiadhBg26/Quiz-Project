@@ -1,0 +1,54 @@
+
+<div class=" content">
+    <div class=" row">
+      <div class=" col-md-12">
+        <div class=" card">
+          <div class=" card-header row justify-content-center align-items-center"> 
+              <h2>
+                <strong>Amin Login Page</strong>
+              </h2>
+          </div>
+          <div class=" card-body">
+            <form [formGroup]= "signInForm">
+              <div class=" row justify-content-center align-items-center">
+                <div class=" col-md-4 ">
+                  <div class=" form-group">
+                    <label for="exampleInputEmail1"> Email address </label>
+                    <input
+                      class=" form-control"
+                      placeholder="mike@email.com"
+                      type="email"
+                      formControlName="adminUserName"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class=" row justify-content-center align-items-center">
+                <div class=" col-md-4">
+                  <div class=" form-group">
+                    <label> Password </label>
+                    <input
+                      class=" form-control"
+                      placeholder="Password"
+                      type="text"    
+                      formControlName="adminPassword"  
+                    />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class=" card-footer row justify-content-center align-items-center ">
+            <button class=" btn btn-fill btn-danger" 
+            type="submit"
+            (click)="activeAdmin()">Login
+          </button>
+            <!-- <button style="background-color: rgb(53, 52, 52); border-color:rgb(53, 52, 52);" mat-raised-button >Login</button> -->
+
+          </div>
+        </div>
+      </div>
+    
+    </div>
+  </div>
+  

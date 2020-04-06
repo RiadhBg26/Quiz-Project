@@ -1,0 +1,52 @@
+
+<div class=" content">
+    <div class=" row">
+      <div class=" col-md-12">
+        <div class=" card">
+          <div class=" card-header row justify-content-center align-items-center"> 
+              <h2>
+                <strong>Sign in</strong>
+              </h2>
+          </div>
+          <div class=" card-body">
+            <form [formGroup]= "loginForm">
+              <div class=" row justify-content-center align-items-center">
+                <div class=" col-md-4 ">
+                  <div class=" form-group">
+                    <label for="exampleInputEmail1"> Email address </label>
+                    <input
+                      class=" form-control"
+                      placeholder="mike@email.com"
+                      type="email"
+                      formControlName="loginMail"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class=" row justify-content-center align-items-center">
+                <div class=" col-md-4">
+                  <div class=" form-group">
+                    <label> Password </label>
+                    <input
+                      class=" form-control"
+                      placeholder="Password"
+                      type="text"    
+                      formControlName="loginPassword"  
+                    />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class=" card-footer row justify-content-center align-items-center ">
+            <button class=" btn btn-fill btn-danger" 
+            type="submit"
+            (click)="connectedUser()">Login
+          </button>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+  </div>
+  

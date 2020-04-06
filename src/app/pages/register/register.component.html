@@ -1,0 +1,140 @@
+
+<div class=" content">
+    <div class=" row">
+      <div class=" col-md-12">
+        <div class=" card">
+          <div class=" card-header row justify-content-center align-items-center"> 
+            <h2>
+              <strong>Sign Up</strong>
+            </h2>
+        </div>
+          <div class=" card-body">
+            <form [formGroup]="registrationForm " >
+              <div class=" row justify-content-center align-items-center">
+                <div class=" col-md-3 px-md-1">
+                  <div class="form-group">
+                    <label> Username </label>
+                    <input
+                      class=" form-control"
+                      placeholder="Username"
+                      type="text"
+                      formControlName="userName"
+                    />
+                  </div>
+                </div>
+                <div class=" col-md-3 px-md-1">
+                  <div class=" form-group">
+                    <label> FirstName </label>
+                    <input
+                      class=" form-control"
+                      placeholder="Username"
+                      type="text"
+                      formControlName="firstName"
+                    />
+                  </div>
+                </div>
+  
+                <div class=" col-md-3 px-md-1">
+                  <div class=" form-group">
+                    <label> Last Name </label>
+                    <input
+                      class=" form-control"
+                      placeholder="Username"
+                      type="text"
+                      formControlName="lastName"
+                    />
+                  </div>
+                </div>
+                <div class=" col-md-4 pl-md-1">
+                  <div class=" form-group">
+                    <label for="exampleInputEmail1"> Email address </label>
+                    <input
+                      class=" form-control"
+                      placeholder="mike@email.com"
+                      type="email"
+                      formControlName="email"
+                      [ngClass]='{"has-error" : registrationForm.get("email").errors}'
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class=" row justify-content-center align-items-center">
+                <div class=" col-md-4 pr-md-1">
+                  <div class=" form-group">
+                    <label> Password </label>
+                    <input
+                      class=" form-control"
+                      placeholder="Company"
+                      type="text"
+                      formControlName="password"
+                      [ngClass]='{"has-error" : registrationForm.get("password").errors}'
+                    />
+                  </div>
+                </div>
+                <div class=" col-md-4 pl-md-1">
+                  <div class=" form-group">
+                    <label> Password Confirmation</label>
+                    <input
+                      class=" form-control"
+                      placeholder="Last Name"
+                      type="text"
+                      formControlName="confirmPassword"
+                    />
+                  </div>
+                </div>
+              </div>
+            
+            </form>
+          </div>
+          <div class=" card-footer row justify-content-center align-items-center ">
+            <button class=" btn btn-fill btn-danger " 
+            type="submit"
+            [disabled]= "!registrationForm.valid || registrationForm.controls['confirmPassword'].value !== registrationForm.controls['password'].value"
+            (click)="storeUsers()">
+            Register
+              
+            </button>
+  
+          </div>
+        </div>
+      </div>
+    
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+             <!-- EMail Help Block -->
+        <!-- <span class="help-block"*ngIf='registrationForm.get("email").invalid' >
+          <span *ngIf="registrationForm.get('email').errors?.pattern">special chars needed</span>
+          <span *ngIf="registrationForm.get('email').errors?.required">email required</span>
+          <span *ngIf="registrationForm.get('email').errors.email">email not valid</span>
+        </span> <br> <br> -->
+  
+        <!--Password Help Block -->
+        <!-- <span class="help-block"*ngIf='registrationForm.get("password").invalid' >
+          <span *ngIf="registrationForm.get('password').errors?.pattern">special chars needed</span> -->
+          <!-- <span *ngIf="registrationForm.get('password').errors?.required">password required</span> -->
+          <!-- <span *ngIf="registrationForm.get('password').errors?.minlength">It must contain At least 8 characters</span> -->
+        <!-- </span> <br> <br> -->
