@@ -23,73 +23,44 @@ quizForm : FormGroup;
 tableQuiz: any;
    
 constructor(private quizService: ServicesService, private router: Router){
-  
+
   this.quizForm = new FormGroup({
-      inputArray : new FormArray([this.textArray()]),
-      checkArray : new FormArray([this.checkBoxArray()]),
-      radioArray : new FormArray([this.radioBoxArray()]),
+    one : new FormGroup({
+      quizTitle : new FormControl(''),
+      quizLength : new FormControl(''),
+    }),
+    quizOne : new FormArray([this.quizOneFunction()]) , 
+    two : new FormGroup({
+      quizTitle : new FormControl(''),
+      quizLength : new FormControl(''),
+    }),
+    quizTwo : new FormArray([this.quizTwoFunction()])
+
+  });
+
+}
+
+quizOneFunction() : FormGroup {
+  return    new FormGroup({
+    question : new FormControl(''),
+    firstAnswer : new FormControl(''),
+    secondAnswer : new FormControl(''),
+    thirdAnswer : new FormControl(''),
+    fourthAnswer : new FormControl(''),
   })
-
 }
 
-textArray() : FormGroup {
-  return new FormGroup({
-  asKInput: new FormControl('')
-})
-}
-
-addInputArray() {
-const array = this.quizForm.get('inputArray') as FormArray;
-array.push(this.textArray())
-}
-
-deleteInputArray(i){
-const array = this.quizForm.get('inputArray') as FormArray;   
-if(i > 0){
-  array.removeAt(i)
-}
-
-}
-
-checkBoxArray() : FormGroup {
+  quizTwoFunction() : FormGroup {
     return new FormGroup({
-    checkInput: new FormControl('')
-  })
-}
-
-addCheckArray() {
-  const array = this.quizForm.get('checkArray') as FormArray;
-  array.push(this.checkBoxArray())
-}
-
-deleteCheckBox(j){
-  const array = this.quizForm.get('checkArray') as FormArray;   
-  if(j > 0){
-    array.removeAt(j)
+      coachAsk : new FormControl(''),
+      candidateAnswer : new FormControl(''),
+    })
   }
 
-}
-
-
-radioBoxArray() : FormGroup {
-  return new FormGroup({
-    radioInput: new FormControl('')
-  })
-}
-
-addRadioArray() {
-  const array = this.quizForm.get('radioArray') as FormArray;
-  array.push(this.checkBoxArray())
-}
-
-deleteRadio(k){
-  const array = this.quizForm.get('radioArray') as FormArray;   
-  if(k > 0){
-    array.removeAt(k)
-  }
-
-}
   ngOnInit() {
+
+  
+
     var gradientChartOptionsConfigurationWithTooltipBlue: any = {
       maintainAspectRatio: false,
       legend: {
@@ -540,9 +511,10 @@ deleteRadio(k){
     this.myChartData.update();
   }
   saveQuiz() { 
+    
     this.tableQuiz = this.quizService.quizTab;
     this.quizService.addQuiz(this.quizForm.value)
- 
+
   }
   remove(i){
     this.quizService.delete(i);
@@ -550,3 +522,72 @@ deleteRadio(k){
   }
 
 }
+
+
+
+
+//   this.quizForm = new FormGroup({
+//       inputArray : new FormArray([this.textArray()]),
+//       checkArray : new FormArray([this.checkBoxArray()]),
+//       radioArray : new FormArray([this.radioBoxArray()]),
+//   })
+
+// }
+
+// textArray() : FormGroup {
+//   return new FormGroup({
+//   asKInput: new FormControl('')
+// })
+// }
+
+// addInputArray() {
+// const array = this.quizForm.get('inputArray') as FormArray;
+// array.push(this.textArray())
+// }
+
+// deleteInputArray(i){
+// const array = this.quizForm.get('inputArray') as FormArray;   
+// if(i > 0){
+//   array.removeAt(i)
+// }
+
+// }
+
+// checkBoxArray() : FormGroup {
+//     return new FormGroup({
+//     checkInput: new FormControl('')
+//   })
+// }
+
+// addCheckArray() {
+//   const array = this.quizForm.get('checkArray') as FormArray;
+//   array.push(this.checkBoxArray())
+// }
+
+// deleteCheckBox(j){
+//   const array = this.quizForm.get('checkArray') as FormArray;   
+//   if(j > 0){
+//     array.removeAt(j)
+//   }
+
+// }
+
+
+// radioBoxArray() : FormGroup {
+//   return new FormGroup({
+//     radioInput: new FormControl('')
+//   })
+// }
+
+// addRadioArray() {
+//   const array = this.quizForm.get('radioArray') as FormArray;
+//   array.push(this.checkBoxArray())
+// }
+
+// deleteRadio(k){
+//   const array = this.quizForm.get('radioArray') as FormArray;   
+//   if(k > 0){
+//     array.removeAt(k)
+//   }
+
+// }

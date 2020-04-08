@@ -1,31 +1,51 @@
 <div class=" content">
-    <div class=" row">
-        <div class=" col-12">
-            <div class=" card card-chart">
-                <div class=" card-header">
-                    <div class=" row">
-                        <div class=" col-sm-12 text-left">
-                            <div class=" col-sm-12">
-                                <div class=" card-body">
-                                    <div class="container">
-                                        <div class="row justify-content-center align-items-center">
-                                            <h2 class=" card-title">Quiz List</h2>
-                                        </div>
-                                        <div class=" col-sm-6">
-                                            <div class=" card-body" >
-                                                <div >
-        
-                                                </div>
-                                                <br>
-                                            </div>
-                                        </div>    
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+  <div class=" row">
+    <div class=" col-12">
+      <div class=" card card-chart">
+        <div class=" card-header">
+          <div class=" row">
+            <div class=" col-sm-12 text-left">
+              <div class=" col-sm-12">
+                <div class=" card-body">
+                  <div class="container">
+                    <div class="row justify-content-center align-items-center">
+                      <h2 class=" card-title">Quiz List</h2>
                     </div>
+                    <div class=" col-sm-6">
+                      <div class=" card-body">
+                        <table>
+                          <ng-container *ngFor="let item of quizTable;let i = index">
+                            <thead>
+                              <tr *ngIf="i==0" >
+                                <th>
+                                   {{getKeys(item.one)[0]}} :  {{(item.one.quizTitle)}}
+                                </th>
+                              </tr>
+                              <tr *ngFor="let innerItem of item.quizOne ;let i = index" >
+                                <th>
+                                  {{getKeys(innerItem)[0]}} : {{(innerItem.question)}}
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>
+                                  
+                                </td>
+                              </tr>
+                            </tbody>
+                          </ng-container>
+                        </table>
+                      </div>
+                      <br>
+                    </div>
+                  </div>
                 </div>
-            </div>  
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>

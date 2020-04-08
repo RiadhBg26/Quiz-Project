@@ -1,4 +1,3 @@
-
 <div class=" content">
   <div class=" row">
     <div class=" col-12">
@@ -9,151 +8,279 @@
               <h2 class=" card-title">Quiz Settings</h2>
             </div>
             <div class=" col-sm-6">
-              <h5 class=" card-category">Set your questions</h5>
-              <div class=" card-body" >
+              <div class=" card-body">
+                <h2 class=" card-category">Quiz One</h2>
                 <form [formGroup]="quizForm">
-                  <div formArrayName="inputArray"
-                    *ngFor="let items of quizForm.controls.inputArray.value; let i = index">
-                    <div class="input-group input-group-sm mb-3" [formGroupName]="i">
-                      <span class="input-group-text" id="inputGroup-sizing-sm">1</span>
-                      <input type="text" class="form-control" aria-label="Small"
-                       placeholder="Question One :"
-                       >
-                    </div>
+                  <div class="form-check mt-2" formGroupName="one">
+                    <input type="text" class="form-control" aria-label="Small" placeholder="Quiz Title :"
+                      formControlName="quizTitle">
+                    <br>
+                    <input type="text" class="form-control" aria-label="Small" placeholder="countdown"
+                      formControlName="quizLength">
                   </div>
-                </form>
-                <form [formGroup]="quizForm">
-                  <table class=" table tablesorter"  formArrayName="radioArray"
-                  *ngFor="let items of quizForm.controls.radioArray.value; let j = index">
-                    <thead class=" text-primary">
-                      <tr>
-                        <th>Radio Quizz</th>
-                      </tr>
-                    </thead>
-                    <tbody [formGroupName]="j"  >
-                      <tr>
-                        <td>
-                          <div class="form-check mt-2" >
-                            <input type="text" class="form-control" aria-label="Small"
-                            placeholder="Question : ">
-                            <br>
-                            <input class="form-check-input" type="radio" 
-                               value="option1" checked>
-                            <label class="form-check-label" for="exampleRadios3">
-                              Default radio
-                            </label>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="form-check mt-2" >
-                            <input class="form-check-input" type="radio" 
-                               value="option1" checked>
-                            <label class="form-check-label" for="exampleRadios1">
-                              Default radio
-                            </label>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="form-check mt-2" >
-                            <input class="form-check-input" type="radio" 
-                               value="option1" checked>
-                            <label class="form-check-label" for="exampleRadios1">
-                              Default radio
-                            </label>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <div class="form-group" formArrayName="quizOne"
+                    *ngFor="let skill of quizForm.get('quizOne').controls; let j = index">
+                    <div [formGroupName]="j">
+                      <div class="form-check mt-2">
+                        <input type="text" class="form-control" aria-label="Small" placeholder="Question : "
+                          formControlName="question">
+                        <br>
+                        <input type="text" class="form-control" aria-label="Small" placeholder="firstAnswer : "
+                          formControlName="firstAnswer">
+                        <br>
+                        <input type="text" class="form-control" aria-label="Small" placeholder="secondAnswer : "
+                          formControlName="secondAnswer">
+                        <br>
+                        <input type="text" class="form-control" aria-label="Small" placeholder="thirdAnswer : "
+                          formControlName="thirdAnswer">
+                        <br>
+                        <input type="text" class="form-control" aria-label="Small" placeholder="fourthAnswer : "
+                          formControlName="fourthAnswer">
+                        <br>
 
-
-                  <table class=" table tablesorter"  formArrayName="checkArray"
-                  *ngFor="let items of quizForm.controls.checkArray.value; let k = index">
-                    <input type="text" class="form-control" aria-label="Small"
-                      placeholder="Question : ">
-                      <br> 
-                    <thead class=" text-primary">
-                      <tr>
-                        <th>CheckBox Quizz</th>
-                      </tr>
-                    </thead>
-                    <tbody class="row justify-content-center align-items-center" [formGroupName]="k">
-                      <tr>
-                        <td>
-                          <div _ngcontent-c1="" class="form-check flex"  >   
-                            
-                            <label _ngcontent-c4="" class="form-check-label">
-                              <input _ngcontent-c4="" checked="" class="form-check-input" type="checkbox"> 
-                              <span _ngcontent-c4="" class="form-check-sign"></span> 
-                            </label> Checked         
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div _ngcontent-c1="" class="form-check flex">    
-                            <label _ngcontent-c4="" class="form-check-label">
-                              <input _ngcontent-c4="" checked="" class="form-check-input" type="checkbox"> 
-                              <span _ngcontent-c4="" class="form-check-sign"></span> 
-                            </label> Checked         
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div _ngcontent-c1="" class="form-check flex">    
-                            <label _ngcontent-c4="" class="form-check-label">
-                              <input _ngcontent-c4="" checked="" class="form-check-input" type="checkbox"> 
-                              <span _ngcontent-c4="" class="form-check-sign"></span> 
-                            </label> Checked         
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </form>
-                <br>
-                <div class="col-12 row justify-content-center align-items-center">
-                  <button mat-raised-button class=" btn btn-fill btn-submit float-right"
-                    (click)="saveQuiz()">Add Quiz
-                  </button>  
-                  <button mat-raised-button class=" btn btn-fill btn-submit float-right ml-2"
-                    (click)="remove(i)">Remove Quiz
-                  </button>  
-                </div>
-                </div>
-            </div>
-              <div class=" col-sm-6 mt-4">
-                <div class=" card card-chart">
-                  <div class=" card-header">
-                   <div class="form-group">
-                        <label for="exampleFormControlSelect1">Example select</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                          <option>Input Field</option>  
-                          <option>CheckBox Quiz</option>
-                          <option>Rdio Quiz</option>
-                        </select>
                       </div>
-                      <button class=" btn btn-fill btn-danger float-right"
-                      type="submit"
-                      (click)="addInputArray(); addRadioArray(); addCheckArray() ">+</button>  
-                      <button class=" btn btn-fill btn-danger float-right"
-                      type="submit"
-                      (click)="deleteInputArray(i); deleteRadio(j);deleteCheckBox(k) ">-</button>  
                     </div>
                   </div>
-                </div>
+                </form>
+              </div>
+            </div>
+            <div class=" col-sm-6 mt-4">
+              <div class="card-body">
+                <h2 class=" card-category">Quiz Two</h2>
+                <form [formGroup]="quizForm">
+                  <div class="form-check mt-2" formGroupName="two">
+                    <input type="text" class="form-control" aria-label="Small" placeholder="quiz Title : "
+                      formControlName="quizTitle">
+                    <br>
+                    <input type="text" class="form-control" aria-label="Small" placeholder="quiz length : "
+                      formControlName="quizLength">
+                    <br>
+                  </div>
+                  <div formArrayName="quizTwo" *ngFor="let skill of quizForm.get('quizTwo').controls; let i = index">
+                    <div [formGroupName]="i">
+                      <input type="text" class="form-control" aria-label="Small" placeholder="Coach Question : "
+                        formControlName="coachAsk">
+                      <br>
+                      <input type="text" class="form-control" aria-label="Small" placeholder="Candidate's Answer : "
+                        formControlName="candidateAnswer">
+                      <br>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-12 row justify-content-center align-items-center">
+              <button mat-raised-button class=" btn btn-fill btn-submit float-right" (click)="saveQuiz()">Add Quiz
+              </button>
+              <button mat-raised-button class=" btn btn-fill btn-submit float-right ml-2" (click)="remove(i)">
+                RemoveQuiz
+              </button>
+            </div>
 
           </div>
         </div>
-      <div class=" card-body">
-        <div class=" chart-area"><canvas id="chartBig1"> </canvas></div>
-      </div>  
+        <div class=" card-body">
+          <div class=" chart-area"><canvas id="chartBig1"> </canvas></div>
+        </div>
+      </div>
     </div>
-  </div> 
+  </div>
 </div>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<div class=" card-body" >
+  <form [formGroup]="quizForm">
+    <div formArrayName="inputArray"
+      *ngFor="let items of quizForm.controls.inputArray.value; let i = index">
+      <div class="input-group input-group-sm mb-3" [formGroupName]="i">
+        <span class="input-group-text" id="inputGroup-sizing-sm">1</span>
+        <input type="text" class="form-control" aria-label="Small"
+         placeholder="Question One :"
+         >
+      </div>
+    </div>
+  </form>
+  <form [formGroup]="quizForm">
+    <table class=" table tablesorter"  formArrayName="radioArray"
+    *ngFor="let items of quizForm.controls.radioArray.value; let j = index">
+      <thead class=" text-primary">
+        <tr>
+          <th>Radio Quizz</th>
+        </tr>
+      </thead>
+      <tbody [formGroupName]="j"  >
+        <tr>
+          <td>
+            <div class="form-check mt-2" >
+              <input type="text" class="form-control" aria-label="Small"
+              placeholder="Question : ">
+              <br>
+              <input class="form-check-input" type="radio" 
+                 value="option1" checked>
+              <label class="form-check-label" for="exampleRadios3">
+                Default radio
+              </label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-check mt-2" >
+              <input class="form-check-input" type="radio" 
+                 value="option1" checked>
+              <label class="form-check-label" for="exampleRadios1">
+                Default radio
+              </label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-check mt-2" >
+              <input class="form-check-input" type="radio" 
+                 value="option1" checked>
+              <label class="form-check-label" for="exampleRadios1">
+                Default radio
+              </label>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <table class=" table tablesorter"  formArrayName="checkArray"
+    *ngFor="let items of quizForm.controls.checkArray.value; let k = index">
+      <input type="text" class="form-control" aria-label="Small"
+        placeholder="Question : ">
+        <br> 
+      <thead class=" text-primary">
+        <tr>
+          <th>CheckBox Quizz</th>
+        </tr>
+      </thead>
+      <tbody class="row justify-content-center align-items-center" [formGroupName]="k">
+        <tr>
+          <td>
+            <div _ngcontent-c1="" class="form-check flex"  >   
+              
+              <label _ngcontent-c4="" class="form-check-label">
+                <input _ngcontent-c4="" checked="" class="form-check-input" type="checkbox"> 
+                <span _ngcontent-c4="" class="form-check-sign"></span> 
+              </label> Checked         
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div _ngcontent-c1="" class="form-check flex">    
+              <label _ngcontent-c4="" class="form-check-label">
+                <input _ngcontent-c4="" checked="" class="form-check-input" type="checkbox"> 
+                <span _ngcontent-c4="" class="form-check-sign"></span> 
+              </label> Checked         
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div _ngcontent-c1="" class="form-check flex">    
+              <label _ngcontent-c4="" class="form-check-label">
+                <input _ngcontent-c4="" checked="" class="form-check-input" type="checkbox"> 
+                <span _ngcontent-c4="" class="form-check-sign"></span> 
+              </label> Checked         
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+  <br>
+  <div class="col-12 row justify-content-center align-items-center">
+    <button mat-raised-button class=" btn btn-fill btn-submit float-right"
+      (click)="saveQuiz()">Add Quiz
+    </button>  
+    <button mat-raised-button class=" btn btn-fill btn-submit float-right ml-2"
+      (click)="remove(i)">Remove Quiz
+    </button>  
+  </div>
+  </div> -->
+
+
+
+
+<!-- --------------------------------------------------- -->
+
+
+<!-- 
+  <div class=" card card-chart">
+    <div class=" card-header">
+     <div class="form-group">
+          <label for="exampleFormControlSelect1">Example select</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option>Input Field</option>  
+            <option>CheckBox Quiz</option>
+            <option>Rdio Quiz</option>
+          </select>
+        </div>
+        <button class=" btn btn-fill btn-danger float-right"
+        type="submit"
+        (click)="addInputArray(); addRadioArray(); addCheckArray() ">+</button>  
+        <button class=" btn btn-fill btn-danger float-right"
+        type="submit"
+        (click)="deleteInputArray(i); deleteRadio(j);deleteCheckBox(k) ">-</button>  
+      </div>
+    </div> -->

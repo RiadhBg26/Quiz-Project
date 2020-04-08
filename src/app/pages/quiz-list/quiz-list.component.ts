@@ -19,8 +19,11 @@ export class QuizListComponent implements OnInit {
   }
   call() {
     this.quizService.addQuiz(this.quizTable.value);
-  
-    
+
+  }
+
+  getKeys(obj){
+    return Object.keys(obj)
   }
 
 }
