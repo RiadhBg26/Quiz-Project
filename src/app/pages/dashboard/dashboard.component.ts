@@ -27,12 +27,10 @@ constructor(private quizService: ServicesService, private router: Router){
   this.quizForm = new FormGroup({
     one : new FormGroup({
       quizTitle : new FormControl(''),
-      quizLength : new FormControl(''),
     }),
     quizOne : new FormArray([this.quizOneFunction()]) , 
     two : new FormGroup({
       quizTitle : new FormControl(''),
-      quizLength : new FormControl(''),
     }),
     quizTwo : new FormArray([this.quizTwoFunction()])
 

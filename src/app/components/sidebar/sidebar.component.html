@@ -4,12 +4,15 @@
       <img src="./assets/img/angular2-logo-white.png" />
     </div>
   </a>
-  <a href="https://www.creative-tim.com?ref=bda-sidebar-logo" class="simple-text logo-normal">
-    Creative Tim
+  <a  class="simple-text logo-normal">
+    Coach
+  </a>
+  <a   class="simple-text logo-normal">
+    Candidates
   </a>
 </div>
 <div class="sidebar-wrapper">
-  <ul class="nav">
+  <!-- <ul class="nav">
     <li
       routerLinkActive="active"
       *ngFor="let menuItem of menuItems"
@@ -20,5 +23,43 @@
         <p>{{ menuItem.title }}</p>
       </a>
     </li>
+  </ul> -->
+  <ul class="nav">
+    <li routerLinkActive="active">
+      <a routerLink="/addquiz" >
+        <i class="tim-icons icon-chart-pie-36"></i>
+        <p>Add Quiz</p>
+      </a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/quizlist">
+        <i class="tim-icons icon-bullet-list-67"></i>
+        <p>Quiz List</p>
+      </a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/tables" >
+        <i class="tim-icons icon-puzzle-10"></i>
+        <p>Candidates</p>
+      </a>
+    </li>
+
+    <li 
+      routerLinkActive="active"
+    >
+      <a routerLink="/user">
+        <i class="tim-icons icon-single-02" ></i>
+        <p>User Profile</p>
+      </a>
+    </li>
+    <!-- <li
+      routerLinkActive="active"
+    >
+      <a routerLink="/icons">
+        <i class="tim-icons icon-atom"></i>
+        <p>Icons</p>
+      </a>
+    </li> -->
+
   </ul>
 </div>

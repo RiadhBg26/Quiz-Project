@@ -4,48 +4,143 @@
       <div class=" card card-chart">
         <div class=" card-header">
           <div class=" row">
-            <div class=" col-sm-12 text-left">
-              <div class=" col-sm-12">
+            <div class=" col-sm-6">
+              <div class=" card-body">
                 <div class=" card-body">
-                  <div class="container">
-                    <div class="row justify-content-center align-items-center">
-                      <h2 class=" card-title">Quiz List</h2>
-                    </div>
-                    <div class=" col-sm-6">
-                      <div class=" card-body">
-                        <table>
-                          <ng-container *ngFor="let item of quizTable;let i = index">
-                            <thead>
-                              <tr *ngIf="i==0" >
-                                <th>
-                                   {{getKeys(item.one)[0]}} :  {{(item.one.quizTitle)}}
-                                </th>
-                              </tr>
-                              <tr *ngFor="let innerItem of item.quizOne ;let i = index" >
-                                <th>
-                                  {{getKeys(innerItem)[0]}} : {{(innerItem.question)}}
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>
-                                  
-                                </td>
-                              </tr>
-                            </tbody>
-                          </ng-container>
-                        </table>
-                      </div>
-                      <br>
-                    </div>
+                  
+                  <div class=" col-sm-12 text-left">
+                    <h2 class=" card-title">Choose a Quiz : </h2>
+                    <mat-radio-group [(ngModel)]="expressType" aria-label="Select an option">
+                      <mat-radio-button value="1" >Quiz 1</mat-radio-button>
+                      <mat-radio-button class="ml-2" value="2" >Quiz 2</mat-radio-button>
+                    </mat-radio-group> 
+                    <!-- [disabled]="expressType === '1' " -->
                   </div>
+                  <table class="table tablesorter mt-4" *ngIf="expressType === '1' ">
+                    <ng-container *ngFor="let item of quizTable; let i = index">
+                      <thead class="text-primary">
+                        <tr *ngIf="i==0">
+                          <th>
+                            <h2 class=" card-category" style="font-size: 2em;">
+                              {{getKeys(item.one)[0] | uppercase}} : {{(item.one.quizTitle) | uppercase}}
+                            </h2>
+                          </th>
+                        </tr>
+                      </thead>
+                      <br>
+                      <tbody *ngFor="let innerItem of item.quizOne; let i = index">
+                        <tr>
+                          <td >
+                              {{getKeys(innerItem)[0] | uppercase}} : {{(innerItem.question) | uppercase}}
+                          </td>
+
+                          <td (click)="save()">
+                              <a> {{(innerItem.firstAnswer) | uppercase}} </a>
+                          </td>
+                          <td (click)="save()">
+                              <a> {{(innerItem.secondAnswer) | uppercase}} </a>
+                          </td>
+                          <td (click)="save()">
+                              <a> {{(innerItem.thirdAnswer) | uppercase}} </a>
+                          </td>
+                          <td (click)="save()">
+                              <a> {{(innerItem.fourthAnswer) | uppercase}} </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                      
+                    </ng-container>
+                  </table>
+                  <table class="table tablesorter mt-4" *ngIf="expressType === '2' ">
+                    <ng-container *ngFor="let item of quizTable; let i = index">
+                      <thead class="text-primary">
+                        <tr *ngIf="i==0">
+                          <th>
+                            <h2 class=" card-category" style="font-size: 2em;">
+                              {{getKeys(item.two)[0] | uppercase}} : {{(item.one.quizTitle) | uppercase}}
+                            </h2>
+                          </th>
+                        </tr>
+                      </thead>
+                      <br>
+                      <tbody *ngFor="let innerItem of item.quizTwo; let i = index">
+                        <tr>
+                          <td >
+                              {{getKeys(innerItem)[0] | uppercase}} : {{(innerItem.coachAsk) | uppercase}}
+                          </td>
+                         
+                        </tr>
+                        <tr>
+                          <td>
+                            <!-- <a> {{(innerItem.firstAnswer) | uppercase}} </a> -->
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="text" class="form-control"
+                             aria-label="Small" placeholder="Candidate's answer:"
+                             value="" [(ngModel)]="theAnswer" >
+                            <!-- <input type="text" class="form-control"
+                             aria-label="Small" placeholder="Candidate's answer:"
+                             value="{{innerItem.candidateAnswer}}" > -->
+                          </td>
+                        </tr>
+                      </tbody>
+                      
+                    </ng-container>
+                  </table>
                 </div>
               </div>
+              <div *ngIf="expressType === '2'">
+                <button mat-raised-button class=" btn btn-fill btn-submit float-right"
+                (click)="update(theAnswer)">submit
+                </button>
+              </div>
+            </div>
+            <div class=" col-sm-6 ">
+              <div class="card-body row justify-content-center align-items-center ">
+                
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <h2 class=" card-category" *ngIf="expressType === '1' || expressType === '2'">Timer</h2>  
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <countdown style="font-size: 3em;" #cd1 [config]="{leftTime: 30}"
+                        *ngIf="expressType === '1' "></countdown>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <countdown #cd1 style="font-size: 3em;" [config]="{leftTime: 60}" 
+                        *ngIf="expressType === '2' "></countdown>
+                      </td>
+                    </tr>
+                  </tbody>                  
+                 </table>
+              </div>
+              <br>
             </div>
           </div>
+        </div>
+        <div class=" card-body">
+          <div class=" chart-area"><canvas id="chartBig1"> </canvas></div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+                <!-- <button (click)="cd1.pause()" class="btn btn-link btn-sm">pause</button>
+                <button (click)="cd1.resume()" class="btn btn-link btn-sm">resume</button>
+                <button (click)="cd1.stop()" class="btn btn-link btn-sm">stop</button>
+                <button (click)="cd1.restart()" class="btn btn-link btn-sm">restart</button> -->
