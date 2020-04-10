@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicesService } from 'src/app/services.service';
 import { Router } from '@angular/router';
+import { SearchPipe } from 'src/app/search.pipe';
 
 @Component({
   selector: 'app-quiz-list',
@@ -9,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class QuizListComponent implements OnInit {
 
+  pipes : SearchPipe;
+  searchTerm : string;
   quizTable: any;
   expressType: string;
   theAnswer: string ;
@@ -18,30 +21,20 @@ export class QuizListComponent implements OnInit {
 
   ngOnInit(): void {
     this.quizTable = this.quizService.quizTab; 
-    this.quizService.getCandidateAnswer; 
-   
-
   }
+
   call() {
     this.quizService.addQuiz(this.quizTable.value);
   }
 
   update(){
-    this.quizService.save(this.theAnswer);
-    for (let i = 0; i < this.quizTable.length; i++) {
-      for (let j = 0; j < this.quizTable[i].quizTwo.length; j++) {
-        this.quizTable[i].quizTwo[j].candidateAnswer = this.theAnswer;
-        console.log(this.quizTable[i].quizTwo[j].candidateAnswer);
-      }
-    }
- 
-   
+    this.quizService.save(event);
   }
-
+  handleEvent($event){
+    return { format: `HH:mm:ss	` };
+  }
 
   getKeys(obj){
     return Object.keys(obj)
   }
-
-
 }

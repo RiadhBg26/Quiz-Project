@@ -45,6 +45,7 @@ quizOneFunction() : FormGroup {
     secondAnswer : new FormControl(''),
     thirdAnswer : new FormControl(''),
     fourthAnswer : new FormControl(''),
+    correctAnswer : new FormControl(''),
   })
 }
 
@@ -54,6 +55,12 @@ quizOneFunction() : FormGroup {
       candidateAnswer : new FormControl(''),
     })
   }
+
+
+  addQuizArray() {
+    const array = this.quizForm.get('quizOne') as FormArray;
+    array.push(this.quizOneFunction())
+}
 
   ngOnInit() {
 

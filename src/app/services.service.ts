@@ -8,12 +8,13 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class ServicesService {
-
+  
   storedUsers = JSON.parse(localStorage.getItem('Registred Users')) || [];
   quizTab = JSON.parse(localStorage.getItem('Quiz Table')) || [];
   coach = null;
   loggedUser = null;
-  getCandidateAnswer: any;
+  value : any;
+  myBoo =  false;
   constructor(private router: Router, private httpClient: HttpClient) { 
 
 //----------------------------------------------candidates-------------------------------------------
@@ -25,6 +26,7 @@ export class ServicesService {
 //-----------------------------------------------admin-----------------------------------------------
     if (localStorage.getItem("admin") || localStorage.getItem("admin") !== 'null') {
       this.coach = JSON.parse(localStorage.getItem("admin"));
+      
     } else {
       this.coach = null;
       }
@@ -35,15 +37,31 @@ export class ServicesService {
   }
 
   activeUser(loginForm){
+    if(localStorage.getItem("connected User") || localStorage.getItem("connected User") !== 'null') {
+      this.loggedUser = JSON.parse(localStorage.getItem("connected User"));
+    } else {
+      this.loggedUser = null;
+    }
+ 
     for (let i = 0; i < this.storedUsers.length; i++) {
       if(this.storedUsers[i].email == loginForm.get("loginMail").value && this.storedUsers[i].password == loginForm.get("loginPassword").value)
         this.loggedUser = this.storedUsers[i];
-        localStorage.setItem('Connected User', JSON.stringify(this.loggedUser));
-        this.router.navigateByUrl('/quizlist')
+        localStorage.setItem('connected User', JSON.stringify(this.loggedUser));
     }
+    localStorage.setItem('admin', 'null');
+    location.reload();
+    this.router.navigateByUrl('/quizlist');
+
+    
   }
 
   admin(signInForm){
+    if (localStorage.getItem("admin") || localStorage.getItem("admin") !== 'null') {
+      this.coach = JSON.parse(localStorage.getItem("admin"));
+      
+    } else {
+      this.coach = null;
+      }
     if( signInForm.get('adminUserName').value == "admin" && signInForm.get('adminPassword').value == "admin" )
     this.coach = {
       userName : signInForm.get('adminUserName').value,
@@ -51,13 +69,30 @@ export class ServicesService {
     } 
     localStorage.setItem('admin', JSON.stringify(this.coach));
       alert("welcome admin")
+      localStorage.setItem('connected User', 'null')
+      location.reload();
       this.router.navigateByUrl('/addquiz')
       return true
   }
 
   addQuiz(quizForm){
     this.quizTab.push(quizForm);
-    localStorage.setItem('Quiz Table', JSON.stringify(this.quizTab));
+    for (let i = 0; i < this.quizTab.length; i++) {
+      for (let j = 0; j < this.quizTab[i].quizOne.length; j++) {
+        if(this.quizTab[i].quizOne[j].correctAnswer == this.quizTab[i].quizOne[j].firstAnswer ||
+          this.quizTab[i].quizOne[j].correctAnswer == this.quizTab[i].quizOne[j].secondAnswer ||
+          this.quizTab[i].quizOne[j].correctAnswer == this.quizTab[i].quizOne[j].thirdAnswer ||
+          this.quizTab[i].quizOne[j].correctAnswer == this.quizTab[i].quizOne[j].fourthAnswer)
+          {
+            localStorage.setItem('Quiz Table', JSON.stringify(this.quizTab));
+            alert("quiz Added")
+            return true
+        }
+        else{
+          localStorage.setItem('Quiz Table', 'null')
+        }
+      }
+    }
   }
   delete(i) {
     this.quizTab = JSON.parse(localStorage.getItem('Quiz Table')) || [];
@@ -65,18 +100,36 @@ export class ServicesService {
     localStorage.setItem('Quiz Table', JSON.stringify(this.quizTab));
   }
 
-  save(theAnswer){
-    console.log(theAnswer);
-    
+  save(event){
+    this.value = event.target.innerText.toString();  
+    console.log(this.value)
+    console.log(this.myBoo)
     for (let i = 0; i < this.quizTab.length; i++) {
-      for (let j = 0; j < this.quizTab[i].quizTwo.length; j++) {
-        // console.log(this.quizTab[i].quizTwo[j].candidateAnswer)
-        this.getCandidateAnswer = this.quizTab[i].quizTwo[j].candidateAnswer = theAnswer;
-        // this.getCandidateAnswer.push(theAnswer)
-        console.log(this.getCandidateAnswer);
+      for (let j = 0; j < this.quizTab[i].quizOne.length; j++) {
+        var x = this.quizTab[i].quizOne[j].correctAnswer.toString().toUpperCase();
+        console.log(x);
+        if(x === this.value){
+          console.log(x);
+          this.myBoo = true;
+        }
       }
     }
-    console.log(this.getCandidateAnswer);
-    
+
+ }
+  logout(){
+    localStorage.clear()
   }
+
 }
+
+
+
+
+
+
+// _________________Manage LocalStorage____________________
+// localStorage.getItem('tip')                             // Get item value
+// localStorage.setItem('tip','cool stuff')     // Set item value
+// localStorage.removeItem('tip')                       // Remove item
+// if (localStorage.getItem('tip') === null)  // Check if item exists
+

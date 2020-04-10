@@ -11,20 +11,24 @@ import { RegisterComponent } from 'src/app/pages/register/register.component';
 import { AdminLoginComponent } from 'src/app/pages/admin-login/admin-login.component';
 import { LoginComponent } from 'src/app/pages/login/login.component';
 import { QuizListComponent } from 'src/app/pages/quiz-list/quiz-list.component';
+import { GuardGuard } from 'src/app/guard.guard';
+import { AdminGuardGuard } from 'src/app/admin-guard.guard';
 // import { RtlComponent } from "../../pages/rtl/rtl.component";
 
 export const AdminLayoutRoutes: Routes = [
-  { path: "dashboard", component: DashboardComponent },
-  { path: "quizlist", component: QuizListComponent },
+  {path: '', redirectTo : '/login', pathMatch : 'full'}, // pathMatch: 'full / prefix
+  { path: "dashboard", component: DashboardComponent, canActivate : [AdminGuardGuard] },
+  { path: "quizlist", component: QuizListComponent  },
+  { path: "user", component: UserComponent, canActivate : [GuardGuard]  },
+  { path: "tables", component: TablesComponent, canActivate : [AdminGuardGuard]  },
   { path: "register", component: RegisterComponent },
   { path: "adminlogin", component: AdminLoginComponent },
   { path: "login", component: LoginComponent },
-  { path: "userlogin", component: LoginComponent },
-  { path: "icons", component: IconsComponent },
-  { path: "maps", component: MapComponent },
-  { path: "user", component: UserComponent },
-  { path: "tables", component: TablesComponent },
+
   // { path: "typography", component: TypographyComponent },
+  // { path: "icons", component: IconsComponent },
+  // { path: "maps", component: MapComponent },
+
   // { path: "notifications", component: NotificationsComponent },
   // { path: "rtl", component: RtlComponent }
 ];

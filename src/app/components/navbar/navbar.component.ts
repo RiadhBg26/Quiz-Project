@@ -18,6 +18,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private toggleButton: any;
   private sidebarVisible: boolean;
 
+
   public isCollapsed = true;
 
   closeResult: string;
@@ -27,7 +28,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private element: ElementRef,
     private router: Router,
     private modalService: NgbModal,
-    private navService: ServicesService
+    private myService: ServicesService
   ) {
     this.location = location;
     this.sidebarVisible = false;
@@ -195,5 +196,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(){
      window.removeEventListener("resize", this.updateColor);
+  }
+  getOut(){
+    this.myService.logout()
   }
 }

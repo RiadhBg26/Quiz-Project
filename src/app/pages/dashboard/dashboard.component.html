@@ -23,22 +23,34 @@
                     *ngFor="let skill of quizForm.get('quizOne').controls; let j = index">
                     <div [formGroupName]="j">
                       <div class="form-check mt-2">
+                        The question : 
                         <input type="text" class="form-control" aria-label="Small" placeholder="Question : "
                           formControlName="question">
                         <br>
+                        The answers:
+                        <br>
+                        <br>
+                        1:
                         <input type="text" class="form-control" aria-label="Small" placeholder="firstAnswer : "
                           formControlName="firstAnswer">
                         <br>
+                        2:
                         <input type="text" class="form-control" aria-label="Small" placeholder="secondAnswer : "
                           formControlName="secondAnswer">
                         <br>
+                        3:
                         <input type="text" class="form-control" aria-label="Small" placeholder="thirdAnswer : "
                           formControlName="thirdAnswer">
                         <br>
+                        4:
                         <input type="text" class="form-control" aria-label="Small" placeholder="fourthAnswer : "
                           formControlName="fourthAnswer">
                         <br>
-
+                        
+                        <br>
+                        the correct answer is :
+                        <input type="text" class="form-control" aria-label="Small" placeholder="correctAnswer : "
+                          formControlName="correctAnswer">
                       </div>
                     </div>
                   </div>
@@ -60,15 +72,27 @@
                   </div>
                   <div formArrayName="quizTwo" *ngFor="let skill of quizForm.get('quizTwo').controls; let i = index">
                     <div [formGroupName]="i">
+                      Coach's question :
                       <input type="text" class="form-control" aria-label="Small" placeholder="Coach Question : "
                         formControlName="coachAsk">
                       <br>
+                      Candidate's answer : 
                       <input type="text" class="form-control" aria-label="Small" placeholder="Candidate's Answer : "
                         formControlName="candidateAnswer">
                       <br>
                     </div>
                   </div>
                 </form>
+                <div class="col-12 row justify-content-center align-items-center">
+                  <button mat-flat-button 
+                    class=" btn btn-fill btn-submit float-right"
+                     (click)="addQuizArray()">quiz+
+                  </button>
+                  <button mat-flat-button 
+                    class=" btn btn-fill btn-submit float-right"
+                     (click)="addAskField()">input+
+                  </button>
+                </div>
               </div>
             </div>
             <div class="col-12 row justify-content-center align-items-center">

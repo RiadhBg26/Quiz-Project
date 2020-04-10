@@ -24,6 +24,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { SearchPipe } from './search.pipe';
 
 @NgModule({
   imports: [
@@ -40,7 +41,10 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     MDBBootstrapModule.forRoot(),
     ToastrModule.forRoot()
   ],
-  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent, DashboardComponent, QuizListComponent, RegisterComponent, AdminLoginComponent, LoginComponent],
+  declarations: [AppComponent, AdminLayoutComponent,
+     AuthLayoutComponent, DashboardComponent,
+      QuizListComponent, RegisterComponent,
+       AdminLoginComponent, LoginComponent, SearchPipe],
   providers: [],
   bootstrap: [AppComponent]
 })

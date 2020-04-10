@@ -29,49 +29,8 @@
       <ul class=" navbar-nav ml-auto">
         <li class=" search-bar input-group">
           <!--  -->
-          <a routerLink="/logout">
-            <button
-              class=" btn btn-link"
-              data-target="#searchModal"
-              data-toggle="modal"
-              (click)="open(content)"
-              id="search-button"
-            >
-              <i class=" tim-icons icon-button-power"> </i>
-              <span class=" d-lg-none d-md-block"> Logout </span>
-            </button>
-          </a>
-          <!--  -->
-          <!--  -->
-          <a routerLink="/login">
-            <button
-              class=" btn btn-link"
-              data-target="#searchModal"
-              data-toggle="modal"
-              (click)="open(content)"
-              id="search-button"
-            >
-              <i class=" tim-icons icon-key-25"> </i>
-              <span class=" d-lg-none d-md-block"> Login </span>
-            </button>
-          </a>
-          <!--  -->
-          <!--  -->
-          <a routerLink="/register">
-             <button
-            class=" btn btn-link"
-            data-target="#searchModal"
-            data-toggle="modal"
-            (click)="open(content)"
-            id="search-button"
-          >
-            <i class=" tim-icons icon-notes"> </i>
-            <span class=" d-lg-none d-md-block"> Register </span>
-            </button>
-          </a>
-          <!--  -->
-          <!-- <button
-            class=" btn btn-link"
+          <button
+            class=" btn btn-link mr-4"
             data-target="#searchModal"
             data-toggle="modal"
             (click)="open(content)"
@@ -80,8 +39,55 @@
             <i class=" tim-icons icon-zoom-split"> </i>
             <span class=" d-lg-none d-md-block"> Search </span>
           </button>
+
+          <a routerLink="/logout">
+            <button
+              (click)="getOut()"
+              class=" btn btn-link"
+              data-toggle="modal"            
+            >
+              <i class=" tim-icons icon-button-power"> </i>
+              <span class=" d-lg-none d-md-block"> Logout </span>
+            </button>
+          </a>
+          <!--  -->
+          <!--  -->
+          <li class=" nav-item" ngbDropdown>
+            <a
+              routerLink="/login"
+              class=" nav-link"
+              data-toggle="dropdown"
+              href="javascript:void(0)"
+              ngbDropdownToggle
+            >
+              <div class=" notification d-none d-lg-block d-xl-block"></div>
+              <i class=" tim-icons icon-key-25"> </i>
+              <p class=" d-lg-none">Login</p>
+            </a>
+            <ul class=" dropdown-menu-right dropdown-navbar" ngbDropdownMenu>
+              <li class=" nav-link">
+                <a class=" nav-item" href="javascript:void(0)"
+                  ngbDropdownItem routerLink="/adminlogin" >
+                  Sign in as admin
+                </a>
+              </li>
+              <li class=" nav-link">
+                <a class=" nav-item" href="javascript:void(0)" 
+                  ngbDropdownItem routerLink="/login" >
+                  Sign in as candidate
+                </a>
+              </li>
+            </ul>
         </li>
-        <li class=" nav-item" ngbDropdown>
+
+          <a routerLink="/register">
+            <button class=" btn btn-link">
+              <i class=" tim-icons icon-notes"> </i>
+              <span class=" d-lg-none d-md-block"> Register </span>
+            </button>
+          </a>
+          <!--  -->
+        <!-- <li class=" nav-item" ngbDropdown>
           <a
             class=" nav-link"
             data-toggle="dropdown"
@@ -90,21 +96,23 @@
           >
           
             <div class=" notification d-none d-lg-block d-xl-block"></div>
-            <i class=" tim-icons icon-sound-wave"> </i>
+            <i class=" tim-icons icon-key-25"> </i>
             <p class=" d-lg-none">Notifications</p>
           </a>
           <ul class=" dropdown-menu-right dropdown-navbar" ngbDropdownMenu>
             <li class=" nav-link">
-              <a class=" nav-item" href="javascript:void(0)" ngbDropdownItem>
-                Mike John responded to your email
-              </a>
-            </li>
-            <--<li class=" nav-link">
-              <a class=" nav-item" href="javascript:void(0)" ngbDropdownItem>
-                You have 5 more tasks
+              <a class=" nav-item" href="javascript:void(0)"
+                ngbDropdownItem routerLink="/adminlogin" >
+                Sign in as admin
               </a>
             </li>
             <li class=" nav-link">
+              <a class=" nav-item" href="javascript:void(0)" 
+                ngbDropdownItem routerLink="/login" >
+                Sign in as candidate
+              </a>
+            </li> -->
+            <!-- <li class=" nav-link">
               <a class=" nav-item" href="javascript:void(0)" ngbDropdownItem>
                 Your friend Michael is in town
               </a>
@@ -118,9 +126,9 @@
               <a class=" nav-item" href="javascript:void(0)" ngbDropdownItem>
                 Another one
               </a>
-            </li>
-          </ul>
-        </li> -->
+            </li> -->
+          <!-- </ul>
+        </li>  -->
         <!-- <li class=" nav-item" ngbDropdown>
           <a
             class=" nav-link"
@@ -158,8 +166,8 @@
     </div>
   </div>
 </nav> 
-<!-- 
- <ng-template #content let-modal>
+
+  <ng-template #content let-modal>
    <div class=" modal-header">
     <input
       class=" form-control"
@@ -179,4 +187,4 @@
     </button>
   </div> 
 
-</ng-template>  -->
+</ng-template>  

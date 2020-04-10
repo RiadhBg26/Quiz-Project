@@ -7,14 +7,20 @@
             <div class=" col-sm-6">
               <div class=" card-body">
                 <div class=" card-body">
-                  
+                  <input matInput type="text" class="form-control"
+                    aria-label="Small" placeholder="Search Filter:"
+                    value="" [(ngModel)]="searchTerm"
+                    *ngIf="expressType === '1' || expressType ==='2' "
+                  >
                   <div class=" col-sm-12 text-left">
                     <h2 class=" card-title">Choose a Quiz : </h2>
                     <mat-radio-group [(ngModel)]="expressType" aria-label="Select an option">
                       <mat-radio-button value="1" >Quiz 1</mat-radio-button>
-                      <mat-radio-button class="ml-2" value="2" >Quiz 2</mat-radio-button>
+                      <mat-radio-button class="ml-2"  value="2" >Quiz 2</mat-radio-button>
+                      <!-- [disabled]="expressType === '1' "[disabled]="expressType === '1' -->
                     </mat-radio-group> 
-                    <!-- [disabled]="expressType === '1' " -->
+                    <!--  -->
+                    
                   </div>
                   <table class="table tablesorter mt-4" *ngIf="expressType === '1' ">
                     <ng-container *ngFor="let item of quizTable; let i = index">
@@ -28,31 +34,36 @@
                         </tr>
                       </thead>
                       <br>
-                      <tbody *ngFor="let innerItem of item.quizOne; let i = index">
+                      <tbody *ngFor="let innerItem of item.quizOne | search: searchTerm ; let i = index">
                         <tr>
                           <td >
                               {{getKeys(innerItem)[0] | uppercase}} : {{(innerItem.question) | uppercase}}
                           </td>
 
-                          <td (click)="save()">
-                              <a> {{(innerItem.firstAnswer) | uppercase}} </a>
+                          <td >
+                              <a (click)="update($event)"> {{(innerItem.firstAnswer) | uppercase}} </a>
                           </td>
-                          <td (click)="save()">
-                              <a> {{(innerItem.secondAnswer) | uppercase}} </a>
+                          <td >
+                              <a (click)="update($event)"> {{(innerItem.secondAnswer) | uppercase}} </a>
                           </td>
-                          <td (click)="save()">
-                              <a> {{(innerItem.thirdAnswer) | uppercase}} </a>
+                          <td >
+                              <a (click)="update($event)"> {{(innerItem.thirdAnswer) | uppercase}} </a>
                           </td>
-                          <td (click)="save()">
-                              <a> {{(innerItem.fourthAnswer) | uppercase}} </a>
+                          <td >
+                              <a (click)="update($event)"> {{(innerItem.fourthAnswer) | uppercase}} </a>
                           </td>
                         </tr>
+                        <td *ngIf="quizService.myBoo == true ">
+                          <div>
+                            <h2>good</h2>
+                            <h3 class="card-category">THE CORRECT ANSWER IS : {{(innerItem.correctAnswer | uppercase)}}</h3>
+                          </div>
+                        </td>
                       </tbody>
-                      
                     </ng-container>
                   </table>
                   <table class="table tablesorter mt-4" *ngIf="expressType === '2' ">
-                    <ng-container *ngFor="let item of quizTable; let i = index">
+                    <ng-container *ngFor="let item of quizTable ; let i = index">
                       <thead class="text-primary">
                         <tr *ngIf="i==0">
                           <th>
@@ -65,6 +76,7 @@
                       <br>
                       <tbody *ngFor="let innerItem of item.quizTwo; let i = index">
                         <tr>
+                        
                           <td >
                               {{getKeys(innerItem)[0] | uppercase}} : {{(innerItem.coachAsk) | uppercase}}
                           </td>
@@ -74,6 +86,7 @@
                           <td>
                             <!-- <a> {{(innerItem.firstAnswer) | uppercase}} </a> -->
                           </td>
+  
                         </tr>
                         <tr>
                           <td>
@@ -99,7 +112,6 @@
             </div>
             <div class=" col-sm-6 ">
               <div class="card-body row justify-content-center align-items-center ">
-                
                 <table>
                   <tbody>
                     <tr>
@@ -112,16 +124,20 @@
                         <countdown style="font-size: 3em;" #cd1 [config]="{leftTime: 30}"
                         *ngIf="expressType === '1' "></countdown>
                       </td>
+                      <td>
+                        
+                      </td>
                     </tr>
                     <tr>
                       <td>
-                        <countdown #cd1 style="font-size: 3em;" [config]="{leftTime: 60}" 
+                        <countdown #cd1 style="font-size: 3em;" [config]="{leftTime: 60}"
                         *ngIf="expressType === '2' "></countdown>
                       </td>
                     </tr>
                   </tbody>                  
                  </table>
               </div>
+
               <br>
             </div>
           </div>
